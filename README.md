@@ -26,15 +26,15 @@ Once you know the first three exits (*Rogue Encampment to Blood Moor, Blood Moor
 | **N**  | **W**  | **S**  | W      | W      | N                |
 | **N**  | **W**  | **W**  | W      | W      | W                |
 | **N**  | **N**  | **W**  | N      | W      | W                |
-| **E**  | **E**  | **E**  | E      | E      | W or N           |
-| **E**  | **E**  | **S**  | S or N | W      | N                |
-| **S**  | **W**  | **N**  | W      | N      | S or E or W or N |
-| **E**  | **E**  | **N**  | E      | N      | S or E or W or N |
-| **E**  | **N**  | **N**  | N      | N      | S or E or W or N |
-| **N**  | **W**  | **N**  | W      | N      | E or W or N      |
-| **W**  | **W**  | **N**  | W      | N      | S or E or W or N |
-| **W**  | **N**  | **N**  | N      | N      | S or E or W or N |
-| **N**  | **N**  | **N**  | N      | N      | S or E or W or N |
+| **E**  | **E**  | **E**  | E      | E      | N \| W           |
+| **E**  | **E**  | **S**  | N \| S | W      | N                |
+| **S**  | **W**  | **N**  | W      | N      | N \| E \| S \| W |
+| **E**  | **E**  | **N**  | E      | N      | N \| E \| S \| W |
+| **E**  | **N**  | **N**  | N      | N      | N \| E \| S \| W |
+| **N**  | **W**  | **N**  | W      | N      | N \| E \| W      |
+| **W**  | **W**  | **N**  | W      | N      | N \| E \| S \| W |
+| **W**  | **N**  | **N**  | N      | N      | N \| E \| S \| W |
+| **N**  | **N**  | **N**  | N      | N      | N \| E \| S \| W |
 
 ## Acknowledgements
 
