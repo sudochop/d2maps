@@ -1,7 +1,7 @@
 D2 Map Investigation
-===
+====================
 
-# Exits in Act 1
+## Exits in Act 1
 
 Once you know the first three exits (*Rogue Encampment to Blood Moor, Blood Moor to Cold Plains, and Cold Plains to Stony Field*) the following overworld exits (*Dark Wood to Black Marsh, Black Marsh to Tamoe Highland, Outer Cloister to Barracks*) are fairly determined.
 
@@ -35,3 +35,7 @@ Once you know the first three exits (*Rogue Encampment to Blood Moor, Blood Moor
 | **W**  | **W**  | **N**  | W      | N      | S or E or W or N |
 | **W**  | **N**  | **N**  | N      | N      | S or E or W or N |
 | **N**  | **N**  | **N**  | N      | N      | S or E or W or N |
+
+## Acknowledgements
+
+Data produced with [d2-map-investigation](https://github.com/squeek502/d2-map-investigation/)
