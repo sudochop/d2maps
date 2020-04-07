@@ -309,6 +309,13 @@ def get_indrek_seeds():
     conn.close()
 
 
+def get_indrek_summoner_spread():
+    summoners = [0, 0, 0, 0]
+    for indrek in get_indrek_seeds():
+        summoners[indrek['summoner']] += 1
+    return summoners
+
+
 def prng_generator(x, c=666, a=1791398085, b=4294967296):
     yield (x, c)
     while True:
