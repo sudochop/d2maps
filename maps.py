@@ -282,22 +282,24 @@ def get_indrek_seeds():
     conn = get_db_connection()
 
     query = conn.execute('''
-        select seed
-        from (
-            select id,
-                lag(direction) over (order by id) as prev_d,
-                from_level, direction as curr_d, seed,
-                lead(direction) over (order by id) as next_d
-            from positional_relationship
-        ) as t
-        where from_level = "Blood Moor"
-        and prev_d = 3
-        and curr_d = 0
-        and next_d = 1
+        SELECT pr.seed, ar.summoner_dir
+        FROM (
+            SELECT id,
+                LAG(direction) OVER (ORDER BY id) AS prev_d,
+                from_level, direction AS curr_d, seed,
+                LEAD(direction) OVER (ORDER BY id) AS next_d
+            FROM positional_relationship
+        ) AS pr
+        JOIN arcane AS ar
+        ON pr.seed = ar.seed
+        WHERE from_level = "Blood Moor"
+        AND prev_d = 3
+        AND curr_d = 0
+        AND next_d = 1
     ''')
 
     for row in query:
-        yield row[0]
+        yield row
 
     conn.close()
 
