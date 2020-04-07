@@ -300,3 +300,12 @@ def get_indrek_seeds():
         yield row[0]
 
     conn.close()
+
+
+def prng_generator(x, c=666, a=1791398085, b=4294967296):
+    yield (x, c)
+    while True:
+        h = a*x + c
+        x = h % b
+        c = h / b
+        yield (x, c)
