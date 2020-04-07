@@ -277,25 +277,34 @@ def csv_import():
 def get_indrek_seeds():
     conn = get_db_connection()
 
-    query = conn.execute('''
-        SELECT pr.seed, ar.summoner_dir
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    query = cursor.execute('''
+        SELECT
+            pr.seed AS seed,
+            ar.portals_dir AS portals,
+            ar.summoner_dir AS summoner
         FROM (
-            SELECT id,
+            SELECT
+                id,
                 LAG(direction) OVER (ORDER BY id) AS prev_d,
                 from_level, direction AS curr_d, seed,
                 LEAD(direction) OVER (ORDER BY id) AS next_d
-            FROM positional_relationship
+            FROM
+                positional_relationship
         ) AS pr
-        JOIN arcane AS ar
-        ON pr.seed = ar.seed
-        WHERE from_level = "Blood Moor"
-        AND prev_d = 3
-        AND curr_d = 0
-        AND next_d = 1
+        JOIN arcane AS ar ON
+            pr.seed = ar.seed
+        WHERE
+            from_level = "Blood Moor"
+            AND prev_d = 3
+            AND curr_d = 0
+            AND next_d = 1
     ''')
 
     for row in query:
-        yield row
+        yield dict(row)
 
     conn.close()
 
