@@ -2,10 +2,6 @@ from enum import Enum
 from pathlib import Path
 import sqlite3
 import csv
-import pprint
-
-
-pp = pprint.PrettyPrinter(indent=2)
 
 
 class Direction(Enum):
