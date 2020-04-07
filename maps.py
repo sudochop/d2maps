@@ -40,11 +40,11 @@ def db_create_table_arcane():
     conn = get_db_connection()
 
     conn.execute('''
-        CREATE TABLE "arcane" (
-            "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-            "seed"	INTEGER NOT NULL UNIQUE,
-            "summoner_dir"	INTEGER NOT NULL,
-            "portals_dir"	INTEGER NOT NULL
+        CREATE TABLE arcane (
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+            seed INTEGER NOT NULL UNIQUE,
+            summoner_dir INTEGER NOT NULL,
+            portals_dir	INTEGER NOT NULL
         )
     ''')
 
@@ -56,12 +56,12 @@ def db_create_table_positional_relationship():
     conn = get_db_connection()
 
     conn.execute('''
-        CREATE TABLE "positional_relationship" (
-            "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-            "seed"	INTEGER NOT NULL,
-            "from_level"	TEXT NOT NULL,
-            "to_level"	TEXT NOT NULL,
-            "direction"	INTEGER NOT NULL
+        CREATE TABLE positional_relationship (
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+            seed INTEGER NOT NULL,
+            from_level TEXT NOT NULL,
+            to_level TEXT NOT NULL,
+            direction INTEGER NOT NULL
         )
     ''')
 
@@ -73,20 +73,20 @@ def db_create_table_room():
     conn = get_db_connection()
 
     conn.execute('''
-        CREATE TABLE "room" (
-            "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-            "seed"	INTEGER NOT NULL,
-            "level_name"	TEXT NOT NULL,
-            "room_flags"	INTEGER NOT NULL,
-            "room_number"	INTEGER NOT NULL,
-            "sub_number"	INTEGER NOT NULL,
-            "preset_type"	INTEGER NOT NULL,
-            "is_preset"	INTEGER NOT NULL,
-            "preset_txt_number"	INTEGER NOT NULL,
-            "level_relative_room_coords_x"	INTEGER NOT NULL,
-            "level_relative_room_coords_y"	INTEGER NOT NULL,
-            "absolute_room_coords_x"	INTEGER NOT NULL,
-            "absolute_room_coords_y"	INTEGER NOT NULL
+        CREATE TABLE room (
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+            seed INTEGER NOT NULL,
+            level_name TEXT NOT NULL,
+            room_flags INTEGER NOT NULL,
+            room_number	INTEGER NOT NULL,
+            sub_number INTEGER NOT NULL,
+            preset_type	INTEGER NOT NULL,
+            is_preset INTEGER NOT NULL,
+            preset_txt_number INTEGER NOT NULL,
+            level_relative_room_coords_x INTEGER NOT NULL,
+            level_relative_room_coords_y INTEGER NOT NULL,
+            absolute_room_coords_x INTEGER NOT NULL,
+            absolute_room_coords_y INTEGER NOT NULL
         )
     ''')
 
@@ -98,19 +98,19 @@ def db_create_table_preset():
     conn = get_db_connection()
 
     conn.execute('''
-        CREATE TABLE "preset" (
-            "id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-            "seed"	INTEGER NOT NULL,
-            "level_name"	TEXT NOT NULL,
-            "preset_id"	TEXT NOT NULL,
-            "level_relative_room_coords_x"	INTEGER NOT NULL,
-            "level_relative_room_coords_y"	INTEGER NOT NULL,
-            "absolute_room_coords_x"	INTEGER NOT NULL,
-            "absolute_room_coords_y"	INTEGER NOT NULL,
-            "room_relative_preset_coords_x"	INTEGER NOT NULL,
-            "room_relative_preset_coords_y"	INTEGER NOT NULL,
-            "absolute_preset_coords_x"	INTEGER NOT NULL,
-            "absolute_preset_coords_y"	INTEGER NOT NULL
+        CREATE TABLE preset (
+            id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+            seed INTEGER NOT NULL,
+            level_name TEXT NOT NULL,
+            preset_id TEXT NOT NULL,
+            level_relative_room_coords_x INTEGER NOT NULL,
+            level_relative_room_coords_y INTEGER NOT NULL,
+            absolute_room_coords_x INTEGER NOT NULL,
+            absolute_room_coords_y INTEGER NOT NULL,
+            room_relative_preset_coords_x INTEGER NOT NULL,
+            room_relative_preset_coords_y INTEGER NOT NULL,
+            absolute_preset_coords_x INTEGER NOT NULL,
+            absolute_preset_coords_y INTEGER NOT NULL
         )
     ''')
 
@@ -130,11 +130,11 @@ def csv_import_arcanes():
                 Direction.from_csv(row['portals_dir']).value
             )
             conn.execute('''
-                INSERT INTO "arcane"
+                INSERT INTO arcane
                     (
-                        "seed",
-                        "summoner_dir",
-                        "portals_dir"
+                        seed,
+                        summoner_dir,
+                        portals_dir
                     )
                 VALUES (?,?,?)
             ''', fields)
@@ -156,12 +156,12 @@ def csv_import_areas_positional_relationships():
                 Direction.from_csv(row['direction']).value
             )
             conn.execute('''
-                INSERT INTO "positional_relationship"
+                INSERT INTO positional_relationship
                     (
-                        "seed",
-                        "from_level",
-                        "to_level",
-                        "direction"
+                        seed,
+                        from_level,
+                        to_level,
+                        direction"
                     )
                 VALUES (?,?,?,?)
             ''', fields)
@@ -191,20 +191,20 @@ def csv_import_rooms():
                 int(row['absolute_room_coords_y'])
             )
             conn.execute('''
-                INSERT INTO "room"
+                INSERT INTO room
                     (
-                        "seed",
-                        "level_name",
-                        "room_flags",
-                        "room_number",
-                        "sub_number",
-                        "preset_type",
-                        "is_preset",
-                        "preset_txt_number",
-                        "level_relative_room_coords_x",
-                        "level_relative_room_coords_y",
-                        "absolute_room_coords_x",
-                        "absolute_room_coords_y"
+                        seed,
+                        level_name,
+                        room_flags,
+                        room_number,
+                        sub_number,
+                        preset_type,
+                        is_preset,
+                        preset_txt_number,
+                        level_relative_room_coords_x,
+                        level_relative_room_coords_y,
+                        absolute_room_coords_x,
+                        absolute_room_coords_y
                     )
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
             ''', fields)
@@ -235,17 +235,17 @@ def csv_import_presets():
             conn.execute('''
                 INSERT INTO preset
                     (
-                        "seed",
-                        "level_name",
-                        "preset_id",
-                        "level_relative_room_coords_x",
-                        "level_relative_room_coords_y",
-                        "absolute_room_coords_x",
-                        "absolute_room_coords_y",
-                        "room_relative_preset_coords_x",
-                        "room_relative_preset_coords_y",
-                        "absolute_preset_coords_x",
-                        "absolute_preset_coords_y"
+                        seed,
+                        level_name,
+                        preset_id,
+                        level_relative_room_coords_x,
+                        level_relative_room_coords_y,
+                        absolute_room_coords_x,
+                        absolute_room_coords_y,
+                        room_relative_preset_coords_x,
+                        room_relative_preset_coords_y,
+                        absolute_preset_coords_x,
+                        absolute_preset_coords_y
                     )
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)
             ''', fields)
