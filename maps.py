@@ -277,6 +277,34 @@ def csv_import():
 def get_indrek_seeds():
     conn = get_db_connection()
 
+    query = conn.execute('''
+        SELECT
+            seed
+        FROM (
+            SELECT
+                id,
+                LAG(direction) OVER (ORDER BY id) AS prev_d,
+                from_level, direction AS curr_d, seed,
+                LEAD(direction) OVER (ORDER BY id) AS next_d
+            FROM
+                positional_relationship
+        )
+        WHERE
+            from_level = "Blood Moor"
+            AND prev_d = 3
+            AND curr_d = 0
+            AND next_d = 1
+    ''')
+
+    for row in query:
+        yield row[0]
+
+    conn.close()
+
+
+def get_indrek_seeds_with_arcane():
+    conn = get_db_connection()
+
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
@@ -310,10 +338,19 @@ def get_indrek_seeds():
 
 
 def get_indrek_summoner_spread():
+    '''Summoner directions for indrek seeds.'''
     summoners = [0, 0, 0, 0]
-    for indrek in get_indrek_seeds():
+    for indrek in get_indrek_seeds_with_arcane():
         summoners[indrek['summoner']] += 1
     return summoners
+
+
+def get_indrek_seed_parity():
+    '''How often indrek is an even or odd seed.'''
+    parity = [0, 0]
+    for seed in get_indrek_seeds():
+        parity[seed % 2] += 1
+    return parity
 
 
 def prng_generator(x, c=666, a=1791398085, b=4294967296):
