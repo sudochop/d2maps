@@ -36,6 +36,32 @@ Once you know the first three exits (*Rogue Encampment to Blood Moor, Blood Moor
 | **TL** | **TL** | **TR** | TL       | TR     | TR \| BR \| TL |
 | **TL** | **TR** | **TR** | TR       | TR     | TR \| BR \| TL |
 
+## Arcane Probabilty & Seed Parity
+
+It appears some combinations of Act 1 maps may produce better Summoner direction odds if you know the seed's parity (Which can be determined by the Forgotten Tower position - courtesy of **evo_Demon**).
+
+For instance, when Blood Moor to Cold Plains exits Top Right and Cold Plains to Stony Field exists Bottom Right (part of the Indrek seed):
+
+**Even Seed** (Tower Top Right):
+
+| Summoner Direction | Occurrences | %   |
+| ------------------ | ----------- | --- |
+| TR                 | 422         | 30  |
+| BR                 | 340         | 24% |
+| BL                 | 279         | 19% |
+| TL                 | 361         | 25% |
+
+**Odd Seed** (Tower Top Left):
+
+| Summoner Direction | Occurrences | %   |
+| ------------------ | ----------- | --- |
+| TR                 | 274         | 19  |
+| BR                 | 363         | 26% |
+| BL                 | 434         | 31% |
+| TL                 | 319         | 22% |
+
+*Dataset of 22,387 seeds.*
+
 ## Acknowledgements
 
 Data produced with [d2-map-investigation](https://github.com/squeek502/d2-map-investigation/)
