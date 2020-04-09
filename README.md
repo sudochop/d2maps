@@ -46,21 +46,21 @@ For instance, when Blood Moor to Cold Plains exits Top Right and Cold Plains to 
 
 | Summoner Direction | Occurrences | %   |
 | ------------------ | ----------- | --- |
-| TR                 | 422         | 30  |
-| BR                 | 340         | 24% |
-| BL                 | 279         | 19% |
-| TL                 | 361         | 25% |
+| TR                 | 322         | 29% |
+| BR                 | 269         | 24% |
+| BL                 | 223         | 20% |
+| TL                 | 275         | 25% |
 
 **Odd Seed** (Tower Top Left):
 
 | Summoner Direction | Occurrences | %   |
 | ------------------ | ----------- | --- |
-| TR                 | 274         | 19  |
-| BR                 | 363         | 26% |
-| BL                 | 434         | 31% |
-| TL                 | 319         | 22% |
+| TR                 | 274         | 20% |
+| BR                 | 363         | 25% |
+| BL                 | 434         | 30% |
+| TL                 | 319         | 23% |
 
-*Dataset of 22,387 seeds.*
+*Dataset of 17,386 seeds.*
 
 ## Acknowledgements
 
