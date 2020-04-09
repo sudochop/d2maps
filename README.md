@@ -60,7 +60,7 @@ For instance, when Blood Moor to Cold Plains exits Top Right and Cold Plains to 
 | BL                 | 434         | 30% |
 | TL                 | 319         | 23% |
 
-*Dataset of 17,386 seeds.*
+*Dataset of 17,386 seeds. Analysis over a larger dataset needed*
 
 ## Acknowledgements
 
