@@ -142,7 +142,7 @@ def csv_import_arcanes():
 def csv_import_areas_positional_relationships():
     conn = get_db_connection()
 
-    with Path('./data/areas.positional.relationships.csv').open() as f:
+    with Path('./data/areas.positional.relationships 2.csv').open() as f:
         reader = csv.DictReader(f)
         for row in reader:
             fields = (
@@ -157,7 +157,7 @@ def csv_import_areas_positional_relationships():
                         seed,
                         from_level,
                         to_level,
-                        direction"
+                        direction
                     )
                 VALUES (?,?,?,?)
             ''', fields)
@@ -335,6 +335,38 @@ def get_indrek_seeds_with_arcane():
         yield dict(row)
 
     conn.close()
+
+
+def get_palace_arcane_door():
+    conn = get_db_connection()
+
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    query = cursor.execute('''
+        SELECT
+            a.seed,
+            a.summoner_dir,
+            a.seed % 2 AS pairity
+        FROM preset AS p
+        JOIN arcane AS a ON
+            p.seed = a.seed
+        WHERE  p.level_name = "Palace Cellar Level 3"
+            AND p.preset_id = "Object 292 door (Door)"
+            AND p.level_relative_room_coords_x = 0
+    ''')
+
+    for row in query:
+        yield dict(row)
+
+    conn.close()
+
+
+def get_door():
+    parities = [[0, 0, 0, 0], [0, 0, 0, 0]]
+    for row in get_palace_arcane_door():
+        parities[row['pairity']][row['summoner_dir']] += 1
+    return parities
 
 
 def get_indrek_summoner_spread():
